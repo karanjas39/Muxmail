@@ -5,6 +5,7 @@ interface bodyType {
   to: string;
   subject: string;
   text: string;
+  app?: string;
   credentials: {
     email: string;
     password: string;
@@ -20,7 +21,7 @@ export async function POST(req: NextRequest) {
     if (!apiKey || apiKey !== API_KEY)
       throw new Error("Invalid or missing API key");
 
-    const { to, subject, text, credentials } = body;
+    const { to, subject, text, credentials, app = "Muxmail" } = body;
 
     if (!(to || subject || text)) throw new Error("All fields are required.");
 
@@ -33,7 +34,7 @@ export async function POST(req: NextRequest) {
     });
 
     const mailOptions = {
-      from: credentials.email,
+      from: `${app} <${credentials.email}>`,
       to,
       subject,
       text,
