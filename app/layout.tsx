@@ -3,7 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 
 export const metadata: Metadata = {
-  title: "Postman",
+  title: "Muxmail",
   description:
     "A simple app to send emails using a Next.js backend by Jaskaran Singh.",
 };
